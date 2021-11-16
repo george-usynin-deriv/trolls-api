@@ -31,9 +31,9 @@ export const BenefitSection = () => {
                     <div className={`${styles["earn-more"]}`}>
                         <h3>Build a business and earn more</h3>
                         <p>
-                            Create your own trading apps by taking advantage of the power of Deriv's trading services.
-                            Share your apps with fellow traders or customers, and have a chance to earn more or build
-                            your own business.
+                            Create your own trading apps by taking advantage of the power of Deriv&apos;s trading
+                            services. Share your apps with fellow traders or customers, and have a chance to earn more
+                            or build your own business.
                         </p>
                     </div>
                 </div>
