@@ -11,6 +11,7 @@ const homeFeedbackSection = {
             <Link href={"mailto: api-support@deriv.com"} key="email-link">
                 <a>api-support@deriv.com</a>
             </Link>,
+            <br key="next-line"/>,
             " if you have any questions.",
         ],
     },
