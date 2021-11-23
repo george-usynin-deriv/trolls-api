@@ -80,20 +80,6 @@ const FeedbackSection: React.FC<FeedbackSectionPropsType> = ({ id }) => {
                 </div>
             </div>
         );
-        return (
-            <div className={`${styles.cta}`}>
-                <div className={`${styles["row-container"]}`}>
-                    <SingleFeedbackSection
-                        background={"gray"}
-                        title={"Looking for your API token?"}
-                        headerSize={3}
-                        buttonLinkPath={"https://app.deriv.com/account/api-token"}
-                        titleButton={"Get your API token"}
-                        showButton
-                    />
-                </div>
-            </div>
-        );
     default:
         return <></>;
     }
