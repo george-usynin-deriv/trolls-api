@@ -80,7 +80,6 @@ const FeedbackSection: React.FC<FeedbackSectionPropsType> = ({ id }) => {
                 </div>
             </div>
         );
-    case "appRegistration":
         return (
             <div className={`${styles.cta}`}>
                 <div className={`${styles["row-container"]}`}>
