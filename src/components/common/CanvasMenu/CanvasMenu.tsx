@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { MouseEventHandler } from "react";
 import { PATHS } from "utils";
 import styles from "./CanvasMenu.module.scss";
@@ -20,7 +21,6 @@ const canvas_menu_links = [
 ];
 
 const CanvasMenu: React.FC<CanvasMenuPropsType> = React.memo(({ is_canvas_menu_shown, toggleCanvasMenu }) => {
-    
     const router = useRouter();
 
     const [is_dropdown_shown, setIsDropDownShown] = React.useState(false);
