@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React, { MouseEventHandler } from "react";
 import { PATHS } from "utils";
 import styles from "./CanvasMenu.module.scss";
+import useIsMobile from "../../../hooks/useIsMobile";
 
 type CanvasMenuPropsType = {
     is_canvas_menu_shown: boolean;
@@ -20,7 +21,6 @@ const canvas_menu_links = [
 ];
 
 const CanvasMenu: React.FC<CanvasMenuPropsType> = React.memo(({ is_canvas_menu_shown, toggleCanvasMenu }) => {
-
     const router = useRouter();
 
     const [is_dropdown_shown, setIsDropDownShown] = React.useState(false);
@@ -30,44 +30,65 @@ const CanvasMenu: React.FC<CanvasMenuPropsType> = React.memo(({ is_canvas_menu_s
             toggleCanvasMenu(false);
         }
     };
-    
+
     return (
         <section
             id="canvas-menu"
             className={`${styles["off-canvas-menu"]}${is_canvas_menu_shown ? ` ${styles["show-canvas"]}` : ""}`}
             onClick={onLinkClick}
         >
-            <div id="home" className={`${styles["menu-wrapper"]} ${router.pathname === "/" ? styles.selected : ""}`}>
-                <Link href="/">
-                    <a>Home</a>
-                </Link>
-            </div>
-            <div className={styles["menu-wrapper"]}>
-                <div
-                    id="doc-menu-header"
-                    className={styles["menu-header"]}
-                    onClick={() => setIsDropDownShown(!is_dropdown_shown)}
-                >
-                    Documentation
-                    <div className={styles["menu-button"]}>
-                        <Image src="/arrow_down.svg" width="16" height="16" alt="expand" />
+            {useIsMobile() && (
+                <>
+                    <div
+                        id="home"
+                        className={`${styles["menu-wrapper"]} ${router.pathname === "/" ? styles.selected : ""}`}
+                    >
+                        <Link href="/">
+                            <a>Home</a>
+                        </Link>
                     </div>
-                </div>
-                <div className={`${styles["menu-panel"]}${is_dropdown_shown ? ` ${styles["show-dropdown"]}` : ""}`}>
-                    {canvas_menu_links.map(({ id, title, path }) => (
-                        <div key={id} className={`${styles["menu-wrapper"]} ${router.pathname === path ? styles.selected : ""}`}>
-                            <Link href={path}>
-                                <a id={id}>{title}</a>
-                            </Link>
+                    <div className={styles["menu-wrapper"]}>
+                        <div
+                            id="doc-menu-header"
+                            className={styles["menu-header"]}
+                            onClick={() => setIsDropDownShown(!is_dropdown_shown)}
+                        >
+                            Documentation
+                            <div className={styles["menu-button"]}>
+                                <Image src="/arrow_down.svg" width="16" height="16" alt="expand" />
+                            </div>
                         </div>
-                    ))}
-                </div>
-            </div>
-            <div id="playground_link" className={`${styles["menu-wrapper"]} ${router.pathname === PATHS.PLAYGROUND ? styles.selected : ""}`}>
-                <Link href={PATHS.PLAYGROUND}>
-                    <a>API Playground</a>
-                </Link>
-            </div>
+                        <div
+                            className={`${styles["menu-panel"]}${
+                                is_dropdown_shown ? ` ${styles["show-dropdown"]}` : ""
+                            }`}
+                        >
+                            {canvas_menu_links.map(({ id, title, path }) => (
+                                <div
+                                    key={id}
+                                    className={`${styles["menu-wrapper"]} ${
+                                        router.pathname === path ? styles.selected : ""
+                                    }`}
+                                >
+                                    <Link href={path}>
+                                        <a id={id}>{title}</a>
+                                    </Link>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div
+                        id="playground_link"
+                        className={`${styles["menu-wrapper"]} ${
+                            router.pathname === PATHS.PLAYGROUND ? styles.selected : ""
+                        }`}
+                    >
+                        <Link href={PATHS.PLAYGROUND}>
+                            <a>API Playground</a>
+                        </Link>
+                    </div>
+                </>
+            )}
         </section>
     );
 });
