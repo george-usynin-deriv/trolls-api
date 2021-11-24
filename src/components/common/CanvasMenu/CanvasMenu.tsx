@@ -64,12 +64,7 @@ const CanvasMenu: React.FC<CanvasMenuPropsType> = React.memo(({ is_canvas_menu_s
                             }`}
                         >
                             {canvas_menu_links.map(({ id, title, path }) => (
-                                <div
-                                    key={id}
-                                    className={`${styles["menu-wrapper"]} ${
-                                        router.pathname === path ? styles.selected : ""
-                                    }`}
-                                >
+                                <div key={id} className={`${router.pathname === path ? styles.selected : ""}`}>
                                     <Link href={path}>
                                         <a id={id}>{title}</a>
                                     </Link>
