@@ -14,11 +14,11 @@ export const generateDerivApiInstance = () => {
     const socket_url = `wss://${server}/websockets/v3?app_id=${app_id}&l=${language}&brand=${brand_name}`;
     const deriv_socket = new WebSocket(socket_url);
 
-    const api = new DerivAPIBasic({
+    return new DerivAPIBasic({
         connection: deriv_socket,
     });
-
-    return api;
 };
 
 export const api = generateDerivApiInstance();
+
+export type APIType = ReturnType<typeof generateDerivApiInstance>;
